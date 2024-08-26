@@ -15,12 +15,12 @@
 
 // App.jsx
 import './App.css';
-import AppRouter from './routes';
+import Core from './features/core/Core';
 
 const App = () => {
   return (
     <div>
-      <AppRouter />
+      < Core/>
     </div>
   );
 };

@@ -22,15 +22,21 @@ export const fetchAsyncGetPosts = createAsyncThunk("post/get", async () => {
         const uploadData = new FormData();
         uploadData.append("title", newPost.title);
         newPost.img && uploadData.append("img", newPost.img, newPost.img.name);
+
         const res = await axios.post(apiUrlPost, uploadData, {
         headers: {
-            "Content-Type": "application/json",
+            //"Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             Authorization: `JWT ${localStorage.localJWT}`,
         },
         });
         return res.data;
     }
     );
+
+    
+
+    
 
     export const fetchAsyncPatchLiked = createAsyncThunk(
     "post/patch",

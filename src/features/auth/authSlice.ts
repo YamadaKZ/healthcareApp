@@ -53,7 +53,7 @@ export const fetchAsyncUpdateProf = createAsyncThunk(
     uploadData,
     {
         headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         Authorization: `JWT ${localStorage.localJWT}`,
         },
     }
@@ -104,6 +104,7 @@ export const authSlice = createSlice({
     },
     ],
 },
+
 reducers: {
     fetchCredStart(state) {
     state.isLoadingAuth = true;

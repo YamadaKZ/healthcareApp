@@ -6,7 +6,7 @@ import { Avatar, Divider, Checkbox, AvatarGroup } from "@mui/material";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 
 import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+//import { AppDispatch } from "../../store";
 
 import { selectProfiles } from "../auth/authSlice";
 
@@ -69,11 +69,12 @@ import {
                 className={styles.post_checkBox}
                 icon={<FavoriteBorder />}
                 checkedIcon={<Favorite />}
-                checked={liked.some((like) => like === loginId)}
+                // checked={liked.some((like) => like === loginId)}
+                checked={Array.isArray(liked) && liked.some((like) => like === loginId)}
                 onChange={handlerLiked}
             />
             <strong> {prof[0]?.nickName}</strong> {title}
-            <AvatarGroup max={7}>
+            {/* <AvatarGroup max={7}>
                 {liked.map((like) => (
                 <Avatar
                     className={styles.post_avatarGroup}
@@ -81,7 +82,21 @@ import {
                     src={profiles.find((prof) => prof.userProfile === like)?.img}
                 />
                 ))}
+            </AvatarGroup> */}
+
+
+            <AvatarGroup max={7}>
+            {Array.isArray(liked) &&
+                liked.map((like) => (
+                <Avatar
+                    className={styles.post_avatarGroup}
+                    key={like}
+                    src={profiles.find((prof) => prof.userProfile === like)?.img}
+                />
+                ))}
             </AvatarGroup>
+
+
             </h4>
 
             <Divider />
