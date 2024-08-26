@@ -1,0 +1,126 @@
+/* src/components/Header.module.css */
+.core_title {
+    font-family: "Playball", cursive;
+    font-weight: normal;
+    color: white;
+    margin: 0; /* タイトルの余白をなくす */
+}
+
+.core_nav {
+    display: flex;
+    gap: 40px; /* 等間隔をさらに広く */
+    justify-content: center; /* ナビゲーションを中央に配置 */
+    align-items: center; /* タイトルと同じ高さに揃える */
+    flex-grow: 1; /* ナビゲーションを中央に固定 */
+}
+
+.core_nav a {
+    color: white; /* 文字色を白に */
+    text-decoration: none;
+}
+
+.core_header {
+    position: sticky;
+    top: 0;
+    background-color: #4d544d; /* 背景色 */
+    padding: 20px;
+    border-bottom: 1px solid lightgray;
+    object-fit: contain;
+    display: flex;
+    z-index: 1;
+    justify-content: space-between; /* ヘッダー内でアイテムを左右に配置 */
+    align-items: center; /* タイトルとナビゲーションを同じ高さに */
+}
+
+.core_btnModal {
+    background-color: transparent;
+    color: gray;
+    padding-top: 3px;
+    font-size: 32px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.core_logout {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.core_logout button {
+    color: white; /* Logoutボタンの文字色を白に */
+}
+
+.core_authButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.core_authButtons button {
+    color: white; /* LogInとSignUpの文字色を白に */
+}
+
+.core_posts {
+    padding: 20px;
+}
+
+.core_progress {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+/* .core_title {
+    font-family: "Playball", cursive;
+    font-weight: normal;
+    text-align: center;
+    }
+    .core_signUp {
+    display: flex;
+    flex-direction: column;
+    }
+
+    .core_text {
+    color: rgb(6, 153, 211);
+    text-align: center;
+    cursor: pointer;
+    }
+    .core_header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 20px;
+    border-bottom: 1px solid lightgray;
+    object-fit: contain;
+    display: flex;
+    z-index: 1;
+    justify-content: space-between;
+    }
+    .core_btnModal {
+    background-color: transparent;
+    color: gray;
+    padding-top: 3px;
+    font-size: 32px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    }
+
+    .core_logout {
+    display: flex;
+    justify-content: flex-end;
+    }
+    .core_posts {
+    padding: 20px;
+    }
+    .core_progress {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    } */
