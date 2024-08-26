@@ -74,6 +74,7 @@ import {
                 onChange={handlerLiked}
             />
             <strong> {prof[0]?.nickName}</strong> {title}
+            
             {/* <AvatarGroup max={7}>
                 {liked.map((like) => (
                 <Avatar
