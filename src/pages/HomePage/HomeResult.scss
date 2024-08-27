@@ -1,0 +1,22 @@
+.results-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.results {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.weight-modification {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.weight-modification-item {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}

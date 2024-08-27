@@ -1,0 +1,85 @@
+.container {
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-wrapper {
+    max-width: 600px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between; /* 等間隔に並べる */
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+// .input-group {
+//     flex-direction: column;
+//     display: flex;
+//     align-items: center;
+// }
+
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* 入力フィールドとボタンの間にスペースを追加 */
+}
+
+.button {
+    margin-left: 10px;
+}
+
+
+.result {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bmi-info {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.bmi-info img {
+    max-width: 80%; /* 画像の大きさを少し小さくする */
+    height: auto;
+    margin-top: 10px;
+}
+
+
+.ad-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.ad-image {
+    width: 270px;
+    height: auto;
+}
+
+.title {
+    text-align: left;
+    margin-top: 50px;
+}
+
+/* メディアクエリで小さい画面では広告を非表示にする */
+@media (max-width: 768px) {
+    .ad-container {
+        display: none;
+    }
+}

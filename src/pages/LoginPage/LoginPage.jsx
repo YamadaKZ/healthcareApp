@@ -22,8 +22,8 @@ const LoginPage = () => {
             <div className="login-container">
                 <h1>Helmes</h1>
                 <p>What you eat is what you are</p>
-                <p>Having healthy meat is </p>
-                <p>a key ingradeents</p>
+                <p>Having Healthy Meal is </p>
+                <p>a key ingredients</p>
                 <p>to Happy Life</p>
                 <Auth />
             </div>

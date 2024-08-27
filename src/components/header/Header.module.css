@@ -22,7 +22,8 @@
 .core_header {
     position: sticky;
     top: 0;
-    background-color: #4d544d; /* 背景色 */
+    /* background-color: #4d544d;  */
+    background-color: #597f7d; 
     padding: 20px;
     border-bottom: 1px solid lightgray;
     object-fit: contain;
