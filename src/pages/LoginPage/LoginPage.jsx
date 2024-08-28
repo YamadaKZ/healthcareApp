@@ -13,7 +13,7 @@ const LoginPage = () => {
     const profile = useSelector(selectProfile);
 
     if (profile?.nickName) {
-        return <Navigate to="/home" />;
+        return <Navigate to="/blog" />;
     }
 
     return (

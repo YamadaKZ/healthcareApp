@@ -83,7 +83,7 @@ const Header = () => {
             <nav className={styles.core_nav}>
                 <Link to="/blog">Blog</Link>
                 <Link to="/body-index">Meal Suggestions </Link>
-                <Link to="/">Home</Link>
+                <Link to="/">BMR</Link>
                 <Link to="/calorie">Calorie</Link>
                 <Link to="/dashboard">Dashboard</Link>
             </nav>
