@@ -76,7 +76,7 @@ const Header = () => {
         <div className={styles.core_header}>
         <Auth />
         <EditProfile />
-        <h1 className={styles.core_title}>Helmes</h1>
+        <h1 className={styles.core_title}>Kenja's</h1>
         
         {profile?.nickName ? (
             <>

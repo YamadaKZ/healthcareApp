@@ -23,7 +23,16 @@
     position: sticky;
     top: 0;
     /* background-color: #4d544d;  */
-    background-color: #597f7d; 
+
+    /* ノーマル */
+    /* background-color: #597f7d;  */
+
+    /* シック系 */
+    /* background-color: #223555;  */
+
+    /* 自然 */
+    background-color: #324851;
+
     padding: 20px;
     border-bottom: 1px solid lightgray;
     object-fit: contain;

@@ -20,9 +20,9 @@ const LoginPage = () => {
         <div>
             <Header/>
             <div className="login-container">
-                <h1>Helmes</h1>
+                <h1>Kenja's</h1>
                 <p>What you eat is what you are</p>
-                <p>Having Healthy Meal is </p>
+                <p>having healthy meal is </p>
                 <p>a key ingredients</p>
                 <p>to Happy Life</p>
                 <Auth />
