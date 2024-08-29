@@ -1,18 +1,25 @@
 // HomePage.scss
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #f0f2f5; // 全体の背景色を設定
+}
+
 .container {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f0f2f5;
+    background-color: #f0f2f5; // 背景色を全体に適用
+    min-height: 100vh; // ページ全体を覆う高さを確保
 }
 
 h2 {
     text-align: center;
     margin-bottom: 20px;
     width: 100%;
-    //border-left: 4px solid #4d544d;
     padding-left: 10px;
 }
 
@@ -81,6 +88,94 @@ h2 {
         display: none;
     }
 }
+
+
+
+
+// // HomePage.scss
+// .container {
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     padding: 20px;
+//     background-color: #f0f2f5;
+//     // height: 100vh;
+// }
+
+// h2 {
+//     text-align: center;
+//     margin-bottom: 20px;
+//     width: 100%;
+//     //border-left: 4px solid #4d544d;
+//     padding-left: 10px;
+// }
+
+// .form-wrapper {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     padding: 20px;
+//     border: 2px solid #4d544d;
+//     border-radius: 15px;
+//     background-color: white;
+//     width: 60%;
+//     max-width: 700px;
+// }
+
+// .form {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr 1fr;
+//     gap: 20px;
+//     width: 100%;
+// }
+
+// .left-column, .middle-column, .right-column {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+
+// .age-gender-group, .height-weight-group {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 10px;
+// }
+
+// .age-input, .height-weight-input {
+//     display: flex;
+//     align-items: center;
+//     gap: 5px;
+// }
+
+// .gender-options {
+//     display: flex;
+//     gap: 10px;
+// }
+
+// .buttons {
+//     display: flex;
+//     gap: 10px;
+//     margin-top: 20px;
+// }
+
+// .ad-container {
+//     position: absolute;
+//     top: 10px;
+//     right: 10px;
+// }
+
+// .ad-image {
+//     width: 280px;
+//     height: auto;
+// }
+
+// /* メディアクエリで小さい画面では広告を非表示にする */
+// @media (max-width: 768px) {
+//     .ad-container {
+//         display: none;
+//     }
+// }
 
 
 

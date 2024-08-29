@@ -3,6 +3,9 @@ import styles from "./Post.module.css";
 
 import { styled } from "@mui/system";
 import { Avatar, Divider, Checkbox, AvatarGroup } from "@mui/material";
+
+
+
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -54,6 +57,10 @@ import {
         await dispatch(fetchAsyncPatchLiked(packet));
         await dispatch(fetchPostEnd());
     };
+
+
+
+    
 
     if (title) {
         return (
