@@ -1,16 +1,59 @@
 .main-title {
     font-family: 'Arial', sans-serif;
-    font-size: 2.5rem; /* フォントサイズを大きくしてスタイリッシュに */
+    font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: 1px;
-    color: #333; /* ダークグレーでシックに */
+    color: #333;
     margin-bottom: 20px;
 }
 
 .annotation {
-    color: #999; /* 灰色の注釈 */
-    font-size: 0.875rem; /* 小さめのフォント */
+    color: #999;
+    font-size: 0.875rem;
     text-align: right;
     margin-top: 20px;
     padding: 10px;
 }
+
+.bmr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid #86ac41;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+}
+
+.bmr-title {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.bmr-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #34675c;
+}
+
+
+
+
+// .main-title {
+//     font-family: 'Arial', sans-serif;
+//     font-size: 2.5rem; /* フォントサイズを大きくしてスタイリッシュに */
+//     font-weight: 700;
+//     letter-spacing: 1px;
+//     color: #333; /* ダークグレーでシックに */
+//     margin-bottom: 20px;
+// }
+
+// .annotation {
+//     color: #999; /* 灰色の注釈 */
+//     font-size: 0.875rem; /* 小さめのフォント */
+//     text-align: right;
+//     margin-top: 20px;
+//     padding: 10px;
+// }

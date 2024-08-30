@@ -60,6 +60,7 @@ export const fetchAsyncGetPosts = createAsyncThunk("post/get", async () => {
         const res = await axios.put(`${apiUrlPost}${liked.id}/`, uploadData, {
             headers: {
             "Content-Type": "application/json",
+            //"Content-Type": "multipart/form-data",
             Authorization: `JWT ${localStorage.localJWT}`,
             },
         });
@@ -68,6 +69,7 @@ export const fetchAsyncGetPosts = createAsyncThunk("post/get", async () => {
         const res = await axios.patch(`${apiUrlPost}${liked.id}/`, uploadData, {
         headers: {
             "Content-Type": "application/json",
+            //"Content-Type": "multipart/form-data",
             Authorization: `JWT ${localStorage.localJWT}`,
         },
         });

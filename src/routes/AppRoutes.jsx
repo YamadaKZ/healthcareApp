@@ -1,35 +1,4 @@
 // src/routes/AppRoutes.jsx
-// import React from "react";
-// import { Routes, Route, Navigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { selectProfile } from "../features/auth/authSlice";
-// import HomePage from "../pages/HomePage";
-// import BlogPage from "../pages/BlogPage";
-// import BodyIndexPage from "../pages/BodyIndex";
-// import CaloriePage from "../pages/CaloriePage";
-// import DashboardPage from "../pages/DashboardPage";
-
-// const PrivateRoute = ({ children }) => {
-//     const profile = useSelector(selectProfile);
-//     return profile?.nickName ? children : <Navigate to="/" />;
-//     };
-
-//     const AppRoutes = () => {
-//     return (
-//         <Routes>
-//         <Route path="/" element={<HomePage />} />
-//         <Route path="/blog" element={<PrivateRoute><BlogPage /></PrivateRoute>} />
-//         <Route path="/body-index" element={<PrivateRoute><BodyIndexPage /></PrivateRoute>} />
-//         <Route path="/calorie" element={<PrivateRoute><CaloriePage /></PrivateRoute>} />
-//         <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
-//         </Routes>
-//     );
-// };
-
-// export default AppRoutes;
-
-
-// src/routes/AppRoutes.jsx
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -65,3 +34,37 @@ const PrivateRoute = ({ children }) => {
 };
 
 export default AppRoutes;
+
+
+
+
+
+// src/routes/AppRoutes.jsx
+// import React from "react";
+// import { Routes, Route, Navigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { selectProfile } from "../features/auth/authSlice";
+// import HomePage from "../pages/HomePage";
+// import BlogPage from "../pages/BlogPage";
+// import BodyIndexPage from "../pages/BodyIndex";
+// import CaloriePage from "../pages/CaloriePage";
+// import DashboardPage from "../pages/DashboardPage";
+
+// const PrivateRoute = ({ children }) => {
+//     const profile = useSelector(selectProfile);
+//     return profile?.nickName ? children : <Navigate to="/" />;
+//     };
+
+//     const AppRoutes = () => {
+//     return (
+//         <Routes>
+//         <Route path="/" element={<HomePage />} />
+//         <Route path="/blog" element={<PrivateRoute><BlogPage /></PrivateRoute>} />
+//         <Route path="/body-index" element={<PrivateRoute><BodyIndexPage /></PrivateRoute>} />
+//         <Route path="/calorie" element={<PrivateRoute><CaloriePage /></PrivateRoute>} />
+//         <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+//         </Routes>
+//     );
+// };
+
+// export default AppRoutes;

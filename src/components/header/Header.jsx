@@ -25,6 +25,7 @@ import {
 import styles from "./Header.module.css";
 import EditProfile from "../../features/core/EditProfile";
 import Auth from "../../features/auth/Auth";
+import { resetBmr } from "../../features/bmr/bmrSlice";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -63,11 +64,21 @@ const Header = () => {
     const isLoadingAuth = useSelector(selectIsLoadingAuth);
 
     const handleLogout = () => {
+
+            // localStorage から meal_ に関連するキャッシュデータを削除
+        Object.keys(localStorage).forEach((key) => {
+            if (key.startsWith("meal_")) {
+                localStorage.removeItem(key);
+            }
+        });
+        
         localStorage.removeItem("localJWT");
+
         dispatch(editNickname(""));
         dispatch(resetOpenProfile());
         dispatch(resetOpenNewPost());
         dispatch(setOpenSignIn());
+        dispatch(resetBmr());
         navigate("/");
     };
     
