@@ -1,12 +1,31 @@
 import React, { useState } from 'react';
-import { Rating, IconButton, Button, Box, Typography } from '@mui/material';
+import { Rating, IconButton, Button, Box, Typography, Grid } from '@mui/material';
 import { CalendarToday } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Radar } from 'react-chartjs-2';
-import 'chart.js/auto';
+import {
+    Chart as ChartJS,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend
+} from 'chart.js';
+import Graph from './Graph';
 import './DashboardPage.scss';
+
+// Register ChartJS components
+ChartJS.register(
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend
+);
 
 const categories = ['運動', '食事', '睡眠', '学習時間', '読書'];
 
@@ -14,19 +33,16 @@ const DashboardPage = () => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [ratings, setRatings] = useState(Array(categories.length).fill(0));
 
-    // レーティング変更の処理
     const handleRatingChange = (index, value) => {
         const newRatings = [...ratings];
         newRatings[index] = value;
         setRatings(newRatings);
     };
 
-    // リセットボタンの処理
     const handleReset = () => {
         setRatings(Array(categories.length).fill(0));
     };
 
-    // レーダーチャートデータ
     const radarData = {
         labels: categories,
         datasets: [
@@ -41,15 +57,14 @@ const DashboardPage = () => {
         ],
     };
 
-    // レーダーチャートオプション
     const radarOptions = {
         scales: {
             r: {
-                min: 0, // 最小値は常に0
-                max: 5, // 最大値を5に固定
+                min: 0,
+                max: 5,
                 ticks: {
-                    stepSize: 1, // 1刻み
-                    showLabelBackdrop: false, // 背景ラベルを無効化
+                    stepSize: 1,
+                    showLabelBackdrop: false,
                     color: '#666',
                 },
                 grid: {
@@ -66,63 +81,479 @@ const DashboardPage = () => {
                 },
             },
         },
-        maintainAspectRatio: false, // レーダーチャートを自由にサイズ調整可能に
+        maintainAspectRatio: false,
     };
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box className="dashboard-container">
-                {/* 左側 - 日付、カテゴリー、星、ボタン */}
-                <Box className="left-section">
-                    <Box className="date-picker">
-                        <Typography variant="h6">日付: {selectedDate ? selectedDate.format('YYYY-MM-DD') : '選択してください'}</Typography>
-                        <DatePicker
-                            value={selectedDate}
-                            onChange={(newDate) => setSelectedDate(newDate)}
-                            renderInput={(params) => (
-                                <IconButton {...params}>
-                                    <CalendarToday fontSize="large" />
-                                </IconButton>
-                            )}
-                        />
-                    </Box>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={6}>
+                        <Box className="left-section">
+                            <Box className="date-picker">
+                                <Typography variant="h6">日付: {selectedDate ? selectedDate.format('YYYY-MM-DD') : '選択してください'}</Typography>
+                                <DatePicker
+                                    value={selectedDate}
+                                    onChange={(newDate) => setSelectedDate(newDate)}
+                                    renderInput={(params) => (
+                                        <IconButton {...params}>
+                                            <CalendarToday fontSize="large" />
+                                        </IconButton>
+                                    )}
+                                />
+                            </Box>
 
-                    {/* カテゴリーとレーティング */}
-                    {categories.map((category, index) => (
-                        <Box key={index} className="category-rating">
-                            <Typography variant="h6">{category}</Typography>
-                            <Rating
-                                name={`rating-${index}`}
-                                value={ratings[index]}
-                                onChange={(event, newValue) => handleRatingChange(index, newValue)}
-                                size="large"
-                                sx={{
-                                    '& .MuiRating-iconEmpty': { color: '#9d9fa3' },
-                                    '& .MuiRating-iconFilled': { color: '#fbc02d' },
-                                }}
-                            />
+                            {categories.map((category, index) => (
+                                <Box key={index} className="category-rating-box" sx={{ border: '1px solid #ddd', padding: '10px', margin: '10px 0', borderRadius: '8px', display: 'flex', alignItems: 'center' }}>
+                                    <Typography variant="h6" sx={{ flex: 1 }}>{category}</Typography>
+                                    <Rating
+                                        name={`rating-${index}`}
+                                        value={ratings[index]}
+                                        onChange={(event, newValue) => handleRatingChange(index, newValue)}
+                                        size="large"
+                                        sx={{
+                                            '& .MuiRating-iconEmpty': { color: '#9d9fa3' },
+                                            '& .MuiRating-iconFilled': { color: '#fbc02d' },
+                                        }}
+                                    />
+                                </Box>
+                            ))}
+
+                            <Box className="button-group">
+                                <Button variant="contained" color="primary">決定</Button>
+                                <Button variant="outlined" color="secondary" onClick={handleReset}>
+                                    リセット
+                                </Button>
+                            </Box>
                         </Box>
-                    ))}
-
-                    {/* ボタン */}
-                    <Box className="button-group">
-                        <Button variant="contained" color="primary">決定</Button>
-                        <Button variant="outlined" color="secondary" onClick={handleReset}>
-                            リセット
-                        </Button>
-                    </Box>
-                </Box>
-
-                {/* 右側 - レーダーチャート */}
-                <Box className="right-section">
-                    <Radar data={radarData} options={radarOptions} />
-                </Box>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <Box className="right-section" style={{ height: '400px' }}> 
+                            <Radar data={radarData} options={radarOptions} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Box className="graph-section" style={{ height: '300px' }}>
+                            <Graph />
+                        </Box>
+                    </Grid>
+                </Grid>
             </Box>
         </LocalizationProvider>
     );
 };
 
 export default DashboardPage;
+
+
+
+
+// import React, { useState } from 'react';
+// import { Rating, IconButton, Button, Box, Typography, Grid } from '@mui/material';
+// import { CalendarToday } from '@mui/icons-material';
+// import { DatePicker } from '@mui/x-date-pickers';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { Radar } from 'react-chartjs-2';
+// import {
+//     Chart as ChartJS,
+//     RadialLinearScale,
+//     PointElement,
+//     LineElement,
+//     Filler,
+//     Tooltip,
+//     Legend
+// } from 'chart.js';
+// import Graph from './Graph';
+// import './DashboardPage.scss';
+
+// // Register ChartJS components
+// ChartJS.register(
+//     RadialLinearScale,
+//     PointElement,
+//     LineElement,
+//     Filler,
+//     Tooltip,
+//     Legend
+// );
+
+// const categories = ['運動', '食事', '睡眠', '学習時間', '読書'];
+
+// const DashboardPage = () => {
+//     const [selectedDate, setSelectedDate] = useState(null);
+//     const [ratings, setRatings] = useState(Array(categories.length).fill(0));
+
+//     const handleRatingChange = (index, value) => {
+//         const newRatings = [...ratings];
+//         newRatings[index] = value;
+//         setRatings(newRatings);
+//     };
+
+//     const handleReset = () => {
+//         setRatings(Array(categories.length).fill(0));
+//     };
+
+//     const radarData = {
+//         labels: categories,
+//         datasets: [
+//             {
+//                 label: '今日の頑張り',
+//                 data: ratings,
+//                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
+//                 borderColor: 'rgba(54, 162, 235, 1)',
+//                 borderWidth: 1,
+//                 pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+//             },
+//         ],
+//     };
+
+//     const radarOptions = {
+//         scales: {
+//             r: {
+//                 min: 0,
+//                 max: 5,
+//                 ticks: {
+//                     stepSize: 1,
+//                     showLabelBackdrop: false,
+//                     color: '#666',
+//                 },
+//                 grid: {
+//                     color: '#ddd',
+//                 },
+//                 angleLines: {
+//                     color: '#ddd',
+//                 },
+//                 pointLabels: {
+//                     font: {
+//                         size: 14,
+//                     },
+//                     color: '#333',
+//                 },
+//             },
+//         },
+//         maintainAspectRatio: false,
+//     };
+
+//     return (
+//         <LocalizationProvider dateAdapter={AdapterDayjs}>
+//             <Box className="dashboard-container">
+                
+//                 <Grid container spacing={3}>
+//                     <Grid item xs={12} md={6}>
+//                         <Box className="left-section">
+//                             <Box className="date-picker">
+//                                 <Typography variant="h6">日付: {selectedDate ? selectedDate.format('YYYY-MM-DD') : '選択してください'}</Typography>
+//                                 <DatePicker
+//                                     value={selectedDate}
+//                                     onChange={(newDate) => setSelectedDate(newDate)}
+//                                     renderInput={(params) => (
+//                                         <IconButton {...params}>
+//                                             <CalendarToday fontSize="large" />
+//                                         </IconButton>
+//                                     )}
+//                                 />
+//                             </Box>
+
+//                             {categories.map((category, index) => (
+//                                 <Box key={index} className="category-rating">
+//                                     <Typography variant="h6">{category}</Typography>
+//                                     <Rating
+//                                         name={`rating-${index}`}
+//                                         value={ratings[index]}
+//                                         onChange={(event, newValue) => handleRatingChange(index, newValue)}
+//                                         size="large"
+//                                         sx={{
+//                                             '& .MuiRating-iconEmpty': { color: '#9d9fa3' },
+//                                             '& .MuiRating-iconFilled': { color: '#fbc02d' },
+//                                         }}
+//                                     />
+//                                 </Box>
+//                             ))}
+
+//                             <Box className="button-group">
+//                                 <Button variant="contained" color="primary">決定</Button>
+//                                 <Button variant="outlined" color="secondary" onClick={handleReset}>
+//                                     リセット
+//                                 </Button>
+//                             </Box>
+//                         </Box>
+//                     </Grid>
+//                     <Grid item xs={12} md={6}>
+//                         <Box className="right-section" style={{ height: '300px' }}>
+//                             <Radar data={radarData} options={radarOptions} />
+//                         </Box>
+//                     </Grid>
+//                     <Grid item xs={12}>
+//                         <Box className="graph-section" style={{ height: '300px' }}>
+//                             <Graph />
+//                         </Box>
+//                     </Grid>
+//                 </Grid>
+//             </Box>
+//         </LocalizationProvider>
+//     );
+// };
+
+// export default DashboardPage;
+
+
+
+
+// import React, { useState } from 'react';
+// import { Rating, IconButton, Button, Box, Typography, Grid } from '@mui/material';
+// import { CalendarToday } from '@mui/icons-material';
+// import { DatePicker } from '@mui/x-date-pickers';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { Radar } from 'react-chartjs-2';
+// import Graph from './Graph'; // Graph コンポーネントをインポート
+// import './DashboardPage.scss';
+
+// const categories = ['運動', '食事', '睡眠', '学習時間', '読書'];
+
+// const DashboardPage = () => {
+//     const [selectedDate, setSelectedDate] = useState(null);
+//     const [ratings, setRatings] = useState(Array(categories.length).fill(0));
+
+//     const handleRatingChange = (index, value) => {
+//         const newRatings = [...ratings];
+//         newRatings[index] = value;
+//         setRatings(newRatings);
+//     };
+
+//     const handleReset = () => {
+//         setRatings(Array(categories.length).fill(0));
+//     };
+
+//     const radarData = {
+//         labels: categories,
+//         datasets: [
+//             {
+//                 label: '今日の頑張り',
+//                 data: ratings,
+//                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
+//                 borderColor: 'rgba(54, 162, 235, 1)',
+//                 borderWidth: 1,
+//                 pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+//             },
+//         ],
+//     };
+
+//     const radarOptions = {
+//         scales: {
+//             r: {
+//                 min: 0,
+//                 max: 5,
+//                 ticks: {
+//                     stepSize: 1,
+//                     showLabelBackdrop: false,
+//                     color: '#666',
+//                 },
+//                 grid: {
+//                     color: '#ddd',
+//                 },
+//                 angleLines: {
+//                     color: '#ddd',
+//                 },
+//                 pointLabels: {
+//                     font: {
+//                         size: 14,
+//                     },
+//                     color: '#333',
+//                 },
+//             },
+//         },
+//         maintainAspectRatio: false,
+//     };
+
+//     return (
+//         <LocalizationProvider dateAdapter={AdapterDayjs}>
+//             <Box className="dashboard-container">
+//                 <Grid container spacing={3}>
+//                     <Grid item xs={12} md={6}>
+//                         <Box className="left-section">
+//                             <Box className="date-picker">
+//                                 <Typography variant="h6">日付: {selectedDate ? selectedDate.format('YYYY-MM-DD') : '選択してください'}</Typography>
+//                                 <DatePicker
+//                                     value={selectedDate}
+//                                     onChange={(newDate) => setSelectedDate(newDate)}
+//                                     renderInput={(params) => (
+//                                         <IconButton {...params}>
+//                                             <CalendarToday fontSize="large" />
+//                                         </IconButton>
+//                                     )}
+//                                 />
+//                             </Box>
+
+//                             {categories.map((category, index) => (
+//                                 <Box key={index} className="category-rating">
+//                                     <Typography variant="h6">{category}</Typography>
+//                                     <Rating
+//                                         name={`rating-${index}`}
+//                                         value={ratings[index]}
+//                                         onChange={(event, newValue) => handleRatingChange(index, newValue)}
+//                                         size="large"
+//                                         sx={{
+//                                             '& .MuiRating-iconEmpty': { color: '#9d9fa3' },
+//                                             '& .MuiRating-iconFilled': { color: '#fbc02d' },
+//                                         }}
+//                                     />
+//                                 </Box>
+//                             ))}
+
+//                             <Box className="button-group">
+//                                 <Button variant="contained" color="primary">決定</Button>
+//                                 <Button variant="outlined" color="secondary" onClick={handleReset}>
+//                                     リセット
+//                                 </Button>
+//                             </Box>
+//                         </Box>
+//                     </Grid>
+//                     <Grid item xs={12} md={6}>
+//                         <Box className="right-section" style={{ height: '300px' }}>
+//                             <Radar data={radarData} options={radarOptions} />
+//                         </Box>
+//                     </Grid>
+//                     <Grid item xs={12}>
+//                         <Box className="graph-section" style={{ height: '300px' }}>
+//                             <Graph />
+//                         </Box>
+//                     </Grid>
+//                 </Grid>
+//             </Box>
+//         </LocalizationProvider>
+//     );
+// };
+
+// export default DashboardPage;
+
+// import React, { useState } from 'react';
+// import { Rating, IconButton, Button, Box, Typography } from '@mui/material';
+// import { CalendarToday } from '@mui/icons-material';
+// import { DatePicker } from '@mui/x-date-pickers';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { Radar } from 'react-chartjs-2';
+// //import 'chart.js/auto';
+// import './DashboardPage.scss';
+
+
+
+// const categories = ['運動', '食事', '睡眠', '学習時間', '読書'];
+
+// const DashboardPage = () => {
+//     const [selectedDate, setSelectedDate] = useState(null);
+//     const [ratings, setRatings] = useState(Array(categories.length).fill(0));
+
+//     // レーティング変更の処理
+//     const handleRatingChange = (index, value) => {
+//         const newRatings = [...ratings];
+//         newRatings[index] = value;
+//         setRatings(newRatings);
+//     };
+
+//     // リセットボタンの処理
+//     const handleReset = () => {
+//         setRatings(Array(categories.length).fill(0));
+//     };
+
+//     // レーダーチャートデータ
+//     const radarData = {
+//         labels: categories,
+//         datasets: [
+//             {
+//                 label: '今日の頑張り',
+//                 data: ratings,
+//                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
+//                 borderColor: 'rgba(54, 162, 235, 1)',
+//                 borderWidth: 1,
+//                 pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+//             },
+//         ],
+//     };
+
+//     // レーダーチャートオプション
+//     const radarOptions = {
+//         scales: {
+//             r: {
+//                 min: 0, // 最小値は常に0
+//                 max: 5, // 最大値を5に固定
+//                 ticks: {
+//                     stepSize: 1, // 1刻み
+//                     showLabelBackdrop: false, // 背景ラベルを無効化
+//                     color: '#666',
+//                 },
+//                 grid: {
+//                     color: '#ddd',
+//                 },
+//                 angleLines: {
+//                     color: '#ddd',
+//                 },
+//                 pointLabels: {
+//                     font: {
+//                         size: 14,
+//                     },
+//                     color: '#333',
+//                 },
+//             },
+//         },
+//         maintainAspectRatio: false, // レーダーチャートを自由にサイズ調整可能に
+//     };
+
+//     return (
+//         <LocalizationProvider dateAdapter={AdapterDayjs}>
+//             <Box className="dashboard-container">
+//                 {/* 左側 - 日付、カテゴリー、星、ボタン */}
+//                 <Box className="left-section">
+//                     <Box className="date-picker">
+//                         <Typography variant="h6">日付: {selectedDate ? selectedDate.format('YYYY-MM-DD') : '選択してください'}</Typography>
+//                         <DatePicker
+//                             value={selectedDate}
+//                             onChange={(newDate) => setSelectedDate(newDate)}
+//                             renderInput={(params) => (
+//                                 <IconButton {...params}>
+//                                     <CalendarToday fontSize="large" />
+//                                 </IconButton>
+//                             )}
+//                         />
+//                     </Box>
+
+//                     {/* カテゴリーとレーティング */}
+//                     {categories.map((category, index) => (
+//                         <Box key={index} className="category-rating">
+//                             <Typography variant="h6">{category}</Typography>
+//                             <Rating
+//                                 name={`rating-${index}`}
+//                                 value={ratings[index]}
+//                                 onChange={(event, newValue) => handleRatingChange(index, newValue)}
+//                                 size="large"
+//                                 sx={{
+//                                     '& .MuiRating-iconEmpty': { color: '#9d9fa3' },
+//                                     '& .MuiRating-iconFilled': { color: '#fbc02d' },
+//                                 }}
+//                             />
+//                         </Box>
+//                     ))}
+
+//                     {/* ボタン */}
+//                     <Box className="button-group">
+//                         <Button variant="contained" color="primary">決定</Button>
+//                         <Button variant="outlined" color="secondary" onClick={handleReset}>
+//                             リセット
+//                         </Button>
+//                     </Box>
+//                 </Box>
+
+//                 {/* 右側 - レーダーチャート */}
+//                 <Box className="right-section">
+//                     <Radar data={radarData} options={radarOptions} />
+//                 </Box>
+//             </Box>
+//         </LocalizationProvider>
+//     );
+// };
+
+// export default DashboardPage;
 
 
 

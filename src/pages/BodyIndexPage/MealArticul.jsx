@@ -67,7 +67,7 @@ const MealArticul = ({ meal }) => {
                 <Typography variant="body1">
                     カロリー: {mealDetails && mealDetails.nutrition && mealDetails.nutrition.nutrients
                         ? mealDetails.nutrition.nutrients.find(nutrient => nutrient.name === "Calories")?.amount
-                        : "N/A"} kcal
+                        : "詳細を確認"} kcal
                 </Typography>
 
                 <Button 

@@ -64,15 +64,24 @@ const Header = () => {
     const isLoadingAuth = useSelector(selectIsLoadingAuth);
 
     const handleLogout = () => {
-
-            // localStorage から meal_ に関連するキャッシュデータを削除
+        // localStorage から meal_ に関連するキャッシュデータを削除
         Object.keys(localStorage).forEach((key) => {
             if (key.startsWith("meal_")) {
                 localStorage.removeItem(key);
             }
         });
+
+        // localStorage から calories_ に関連するデータを削除
+        Object.keys(localStorage).forEach((key) => {
+            if (key.startsWith("calories_")) {
+                localStorage.removeItem(key);
+            }
+        });
+
         
         localStorage.removeItem("localJWT");
+        //calory
+        localStorage.removeItem("checkedMeals");
 
         dispatch(editNickname(""));
         dispatch(resetOpenProfile());
