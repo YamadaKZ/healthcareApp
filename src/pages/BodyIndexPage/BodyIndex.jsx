@@ -7,7 +7,8 @@ import { selectBmr } from "../../features/bmr/bmrSlice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const SpoonacularAPIKey = "a3927dd920ed4314a44e9982f89097ea"; // Spoonacular API key
+//const SpoonacularAPIKey = process.env.Spoonacular_APIKey; // Spoonacular API key
+const SpoonacularAPIKey = import.meta.env.VITE_SPOONACULAR_API_KEY; // Spoonacular API key
 
 const BodyIndexPage = () => {
     const [height, setHeight] = useState("");
@@ -202,14 +203,27 @@ const BodyIndexPage = () => {
             )}
 
             {/* MealArticul component to display meals */}
-            {showMealArticul && mealPlan && mealPlan.meals.map((meal) => (
-                <MealArticul key={meal.id} meal={meal} />
-            ))}
+            {/* <div className="articleBox ">
+                {showMealArticul && mealPlan && mealPlan.meals.map((meal) => (
+                    <MealArticul key={meal.id} meal={meal} />
+                ))}
+            </div> */}
+            
+            {/* MealArticul component to display meals */}
+            {showMealArticul && mealPlan && (
+                <div className="articleBox">
+                    {mealPlan.meals.map((meal) => (
+                        <MealArticul key={meal.id} meal={meal} />
+                    ))}
+                </div>
+            )}
+
         </div>
     );
 };
 
 export default BodyIndexPage;
+
 
 
 

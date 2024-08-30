@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Grid, Typography, Box } from "@mui/material";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FoodTable from "./FoodTable";
+import MealArticul from "../BodyIndexPage/MealArticul"; // MealArticulをインポート
 import './CaloriePage.scss'; // SCSSファイルをインポート
 import { useSelector } from "react-redux";
 import { selectBmr } from "../../features/bmr/bmrSlice"; // BMRのセレクタをインポート
@@ -19,6 +20,14 @@ const options = [
 const CaloriePage = () => {
     const [selectedOption, setSelectedOption] = useState("");
     const bmr = useSelector(selectBmr); // BMRの値を取得
+    const [meals, setMeals] = useState([]);
+
+    // ローカルストレージから献立を取得
+    useEffect(() => {
+        const mealIds = Object.keys(localStorage).filter(key => key.startsWith("meal_"));
+        const storedMeals = mealIds.map(id => JSON.parse(localStorage.getItem(id)));
+        setMeals(storedMeals);
+    }, []);
 
     const handleClick = (option) => {
         setSelectedOption(prevOption => (prevOption === option ? "" : option));
@@ -72,11 +81,317 @@ const CaloriePage = () => {
                     {Math.round(bmr)} kcal
                 </Typography>
             </Box>
+
+            {/* あなたが調べた献立の表示 */}
+            <Box className="meal-history-container">
+                <Typography variant="h5" className="meal-history-title">
+                    あなたが調べた献立：
+                </Typography>
+                {meals.length > 0 ? (
+                    meals.map((meal, index) => (
+                        <MealArticul key={index} meal={meal} />
+                    ))
+                ) : (
+                    <Typography variant="body1">
+                        まだ献立がありません。
+                    </Typography>
+                )}
+            </Box>
         </>
     );
 };
 
 export default CaloriePage;
+
+
+
+// import React, { useState } from "react";
+// import { Button, Grid, Typography, Box } from "@mui/material";
+// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+// import FoodTable from "./FoodTable";
+// import "./CaloriePage.scss"; // SCSSファイルをインポート
+// import { useSelector } from "react-redux";
+// import { selectBmr } from "../../features/bmr/bmrSlice"; // BMRのセレクタをインポート
+// import MealArticul from "../BodyIndexPage/MealArticul"; // MealArticulコンポーネントをインポート
+
+// const options = [
+//     { value: "grain", label: "穀類" },
+//     { value: "meat", label: "肉類・卵" },
+//     { value: "fish", label: "魚介類" },
+//     { value: "vegetable", label: "野菜" },
+//     { value: "fruit", label: "果物" },
+//     { value: "oil", label: "油脂類" },
+//     // 他のオプション
+// ];
+
+// const CaloriePage = () => {
+//     const [selectedOption, setSelectedOption] = useState("");
+//     const bmr = useSelector(selectBmr); // BMRの値を取得
+//     const mealIds = ["1697577", "650378", "716432"]; // ローカルストレージに保存された献立IDの例
+
+//     const handleClick = (option) => {
+//         setSelectedOption((prevOption) => (prevOption === option ? "" : option));
+//     };
+
+//     const getMealFromLocalStorage = (mealId) => {
+//         const cachedMeal = localStorage.getItem(`meal_${mealId}`);
+//         const parsedMeal = cachedMeal ? JSON.parse(cachedMeal) : null;
+
+//         // ログで確認
+//         console.log(`Meal ID: ${mealId}`, parsedMeal);
+
+//         return parsedMeal;
+//     };
+
+//     return (
+//         <>
+//             <Typography variant="h2" align="center" gutterBottom className="main-title">
+//                 栄養価一覧
+//             </Typography>
+
+//             <Grid container spacing={3} justifyContent="center" alignItems="center" sx={{ marginTop: 4 }}>
+//                 {options.map((option, index) => (
+//                     <Grid item xs={12} sm={4} md={3} key={index}>
+//                         <Button
+//                             fullWidth
+//                             variant="contained"
+//                             onClick={() => handleClick(option.value)}
+//                             sx={{
+//                                 backgroundColor: "#34675c",
+//                                 color: "#ffffff",
+//                                 borderRadius: "10px",
+//                                 padding: "15px 20px",
+//                                 display: "flex",
+//                                 justifyContent: "space-between",
+//                                 "&:hover": {
+//                                     backgroundColor: "#86ac41",
+//                                 },
+//                             }}
+//                         >
+//                             {option.label}
+//                             <ArrowForwardIosIcon sx={{ marginLeft: 1 }} />
+//                         </Button>
+//                     </Grid>
+//                 ))}
+//             </Grid>
+
+//             {/* 選択されたオプションに応じてテーブルを表示 */}
+//             {selectedOption && <FoodTable category={selectedOption} />}
+
+//             <Typography variant="body2" className="annotation">
+//                 日本食品標準成分表(七訂)準拠 可食部100gあたりの成分値
+//             </Typography>
+
+//             {/* 必須カロリーの表示 */}
+//             <Box className="bmr-container">
+//                 <Typography variant="h6" className="bmr-title">
+//                     あなたの必須カロリー：
+//                 </Typography>
+//                 <Typography variant="h4" className="bmr-value">
+//                     {Math.round(bmr)} kcal
+//                 </Typography>
+//             </Box>
+
+//             {/* あなたが調べた献立 */}
+//             <Box className="meal-history-container">
+//                 <Typography variant="h4" className="meal-history-title">
+//                     あなたが調べた献立
+//                 </Typography>
+//                 {mealIds.map((mealId) => {
+//                     const meal = getMealFromLocalStorage(mealId);
+//                     return meal ? <MealArticul key={mealId} meal={meal} /> : null;
+//                 })}
+//             </Box>
+//         </>
+//     );
+// };
+
+// export default CaloriePage;
+
+
+
+// import React, { useState } from "react";
+// import { Button, Grid, Typography, Box } from "@mui/material";
+// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+// import FoodTable from "./FoodTable";
+// import "./CaloriePage.scss"; // SCSSファイルをインポート
+// import { useSelector } from "react-redux";
+// import { selectBmr } from "../../features/bmr/bmrSlice"; // BMRのセレクタをインポート
+// import MealArticul from "../BodyIndexPage/MealArticul"; // MealArticulコンポーネントをインポート
+
+// const options = [
+//     { value: "grain", label: "穀類" },
+//     { value: "meat", label: "肉類・卵" },
+//     { value: "fish", label: "魚介類" },
+//     { value: "vegetable", label: "野菜" },
+//     { value: "fruit", label: "果物" },
+//     { value: "oil", label: "油脂類" },
+//     // 他のオプション
+//     ];
+
+//     const CaloriePage = () => {
+//     const [selectedOption, setSelectedOption] = useState("");
+//     const bmr = useSelector(selectBmr); // BMRの値を取得
+//     const mealIds = ["1697577", "649405", "653019"]; // ローカルストレージに保存された献立IDの例
+
+//     const handleClick = (option) => {
+//         setSelectedOption((prevOption) => (prevOption === option ? "" : option));
+//     };
+
+//     const getMealFromLocalStorage = (mealId) => {
+//         const cachedMeal = localStorage.getItem(`meal_${mealId}`);
+//         return cachedMeal ? JSON.parse(cachedMeal) : null;
+//     };
+
+//     return (
+//         <>
+//         <Typography variant="h2" align="center" gutterBottom className="main-title">
+//             栄養価一覧
+//         </Typography>
+
+//         <Grid container spacing={3} justifyContent="center" alignItems="center" sx={{ marginTop: 4 }}>
+//             {options.map((option, index) => (
+//             <Grid item xs={12} sm={4} md={3} key={index}>
+//                 <Button
+//                 fullWidth
+//                 variant="contained"
+//                 onClick={() => handleClick(option.value)}
+//                 sx={{
+//                     backgroundColor: "#34675c",
+//                     color: "#ffffff",
+//                     borderRadius: "10px",
+//                     padding: "15px 20px",
+//                     display: "flex",
+//                     justifyContent: "space-between",
+//                     "&:hover": {
+//                     backgroundColor: "#86ac41",
+//                     },
+//                 }}
+//                 >
+//                 {option.label}
+//                 <ArrowForwardIosIcon sx={{ marginLeft: 1 }} />
+//                 </Button>
+//             </Grid>
+//             ))}
+//         </Grid>
+
+//         {/* 選択されたオプションに応じてテーブルを表示 */}
+//         {selectedOption && <FoodTable category={selectedOption} />}
+
+//         <Typography variant="body2" className="annotation">
+//             日本食品標準成分表(七訂)準拠 可食部100gあたりの成分値
+//         </Typography>
+
+//         {/* 必須カロリーの表示 */}
+//         <Box className="bmr-container">
+//             <Typography variant="h6" className="bmr-title">
+//             あなたの必須カロリー：
+//             </Typography>
+//             <Typography variant="h4" className="bmr-value">
+//             {Math.round(bmr)} kcal
+//             </Typography>
+//         </Box>
+
+//         {/* あなたが調べた献立 */}
+//         <Box className="meal-history-container">
+//             <Typography variant="h4" className="meal-history-title">
+//             あなたが調べた献立
+//             </Typography>
+//             {mealIds.map((mealId) => {
+//             const meal = getMealFromLocalStorage(mealId);
+//             return meal ? <MealArticul key={mealId} meal={meal} /> : null;
+//             })}
+//         </Box>
+//         </>
+//     );
+// };
+
+// export default CaloriePage;
+
+
+
+
+
+// import React, { useState } from "react";
+// import { Button, Grid, Typography, Box } from "@mui/material";
+// import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+// import FoodTable from "./FoodTable";
+// import './CaloriePage.scss'; // SCSSファイルをインポート
+// import { useSelector } from "react-redux";
+// import { selectBmr } from "../../features/bmr/bmrSlice"; // BMRのセレクタをインポート
+
+// const options = [
+//     { value: "grain", label: "穀類" },
+//     { value: "meat", label: "肉類・卵" },
+//     { value: "fish", label: "魚介類" },
+//     { value: "vegetable", label: "野菜" },
+//     { value: "fruit", label: "果物" },
+//     { value: "oil", label: "油脂類" },
+//     // 他のオプション
+// ];
+
+// const CaloriePage = () => {
+//     const [selectedOption, setSelectedOption] = useState("");
+//     const bmr = useSelector(selectBmr); // BMRの値を取得
+
+//     const handleClick = (option) => {
+//         setSelectedOption(prevOption => (prevOption === option ? "" : option));
+//     };
+
+//     return (
+//         <>
+//             <Typography variant="h2" align="center" gutterBottom className="main-title">
+//                 栄養価一覧
+//             </Typography>
+
+//             <Grid container spacing={3} justifyContent="center" alignItems="center" sx={{ marginTop: 4 }}>
+//                 {options.map((option, index) => (
+//                     <Grid item xs={12} sm={4} md={3} key={index}>
+//                         <Button
+//                             fullWidth
+//                             variant="contained"
+//                             onClick={() => handleClick(option.value)}
+//                             sx={{
+//                                 backgroundColor: "#34675c",
+//                                 color: "#ffffff",
+//                                 borderRadius: "10px",
+//                                 padding: "15px 20px",
+//                                 display: "flex",
+//                                 justifyContent: "space-between",
+//                                 "&:hover": {
+//                                     backgroundColor: "#86ac41",
+//                                 },
+//                             }}
+//                         >
+//                             {option.label}
+//                             <ArrowForwardIosIcon sx={{ marginLeft: 1 }} />
+//                         </Button>
+//                     </Grid>
+//                 ))}
+//             </Grid>
+
+//             {/* 選択されたオプションに応じてテーブルを表示 */}
+//             {selectedOption && <FoodTable category={selectedOption} />}
+            
+//             <Typography variant="body2" className="annotation">
+//                 日本食品標準成分表(七訂)準拠  可食部100gあたりの成分値
+//             </Typography>
+
+//             {/* 必須カロリーの表示 */}
+//             <Box className="bmr-container">
+//                 <Typography variant="h6" className="bmr-title">
+//                     あなたの必須カロリー：
+//                 </Typography>
+//                 <Typography variant="h4" className="bmr-value">
+//                     {Math.round(bmr)} kcal
+//                 </Typography>
+//             </Box>
+//         </>
+//     );
+// };
+
+// export default CaloriePage;
+
 
 
 

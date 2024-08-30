@@ -3,7 +3,8 @@ import { Modal, Box, Button, Typography, CircularProgress } from "@mui/material"
 import axios from "axios";
 import "./MealArticul.scss";
 
-const SpoonacularAPIKey = "a3927dd920ed4314a44e9982f89097ea"; // Spoonacular APIキー
+//const SpoonacularAPIKey = process.env.Spoonacular_APIKey; // Spoonacular APIキー
+const SpoonacularAPIKey = import.meta.env.VITE_SPOONACULAR_API_KEY; // Spoonacular API key
 
 const MealArticul = ({ meal }) => {
     const [open, setOpen] = useState(false);

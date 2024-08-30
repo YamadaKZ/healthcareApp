@@ -5,17 +5,18 @@
     letter-spacing: 1px;
     color: #333;
     margin-bottom: 20px;
-}
-
-.annotation {
-    color: #999;
-    font-size: 0.875rem;
-    text-align: right;
-    margin-top: 20px;
-    padding: 10px;
-}
-
-.bmr-container {
+    text-align: center; /* 中央揃え */
+    }
+    
+    .annotation {
+        color: #999;
+        font-size: 0.875rem;
+        text-align: center; /* 中央揃え */
+        margin-top: 20px;
+        padding: 10px;
+    }
+    
+    .bmr-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,18 +26,115 @@
     border: 2px solid #86ac41;
     border-radius: 15px;
     background-color: #f9f9f9;
-}
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto; /* 中央揃え */
+    }
+    
+    .bmr-title {
+        font-size: 1.2rem;
+        color: #555;
+    }
+    
+    .bmr-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #34675c;
+    }
 
-.bmr-title {
-    font-size: 1.2rem;
-    color: #555;
-}
-
-.bmr-value {
+    .meal-history-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+        max-width: 800px; /* 最大幅を設定 */
+        margin-left: auto;
+        margin-right: auto; /* コンテナを中央に */
+        padding: 20px;
+        background-color: #7da3a1; /* 背景色 */
+        //background-color: #f2efe8; /* 背景色 */
+        border-radius: 10px; /* 角を丸める */
+    }
+    
+    .meal-history-title {
     font-size: 2rem;
-    font-weight: bold;
-    color: #34675c;
-}
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .meal-articul-container {
+    margin-bottom: 30px;
+    width: 100%; /* MealArticulを最大幅に */
+    }
+    
+    @media (max-width: 768px) {
+    .meal-history-container {
+        max-width: 90%; /* モバイル向けに幅を調整 */
+    }
+    }
+    
+    
+    // .meal-history-container {
+    //     margin-top: 40px;
+    // }
+    
+    // .meal-history-title {
+    //     font-size: 2rem;
+    //     color: #333;
+    //     font-weight: 600;
+    //     margin-bottom: 20px;
+    //     text-align: center;
+    // }
+    
+    // .meal-articul-container {
+    //     margin-bottom: 30px;
+    // }
+    
+
+
+// .main-title {
+//     font-family: 'Arial', sans-serif;
+//     font-size: 2.5rem;
+//     font-weight: 700;
+//     letter-spacing: 1px;
+//     color: #333;
+//     margin-bottom: 20px;
+// }
+
+// .annotation {
+//     color: #999;
+//     font-size: 0.875rem;
+//     text-align: right;
+//     margin-top: 20px;
+//     padding: 10px;
+// }
+
+// .bmr-container {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     margin-top: 20px;
+//     padding: 20px;
+//     border: 2px solid #86ac41;
+//     border-radius: 15px;
+//     background-color: #f9f9f9;
+// }
+
+// .bmr-title {
+//     font-size: 1.2rem;
+//     color: #555;
+// }
+
+// .bmr-value {
+//     font-size: 2rem;
+//     font-weight: bold;
+//     color: #34675c;
+// }
+
 
 
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import { PROPS_AUTHEN, PROPS_PROFILE, PROPS_NICKNAME } from "../types";
 
 const apiUrl ="http://127.0.0.1:8000/";
+//const apiUrl = import.meta.env.VITE_DEV_API_URL;
 
 export const fetchAsyncLogin = createAsyncThunk(
     "auth/post",

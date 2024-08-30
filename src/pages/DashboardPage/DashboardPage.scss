@@ -2,24 +2,24 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    
-        .left-section {
+
+    .left-section {
         width: 40%;
-        
+
         .date-picker {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-    
+
             h6 {
-            font-size: 1.2rem;
+                font-size: 1.2rem;
             }
-    
+
             .MuiIconButton-root {
-            margin-left: 10px;
+                margin-left: 10px;
             }
         }
-    
+
         .category-rating {
             display: flex;
             justify-content: space-between;
@@ -28,34 +28,110 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 8px;
-    
+
             h6 {
-            font-size: 1.2rem;
+                font-size: 1.2rem;
             }
         }
-    
+
         .button-group {
             margin-top: 20px;
+
             button {
-            margin-right: 10px;
+                margin-right: 10px;
             }
         }
-        }
-    
-        .right-section {
+    }
+
+    .right-section {
         width: 50%;
         display: flex;
-        justify-content: center;
+        flex-direction: column; /* 縦方向に配置 */
         align-items: center;
+
+        .MuiTabs-root {
+            margin-bottom: 20px; /* チャートとの間にスペースを追加 */
+            border: 1px solid #ccc; /* 外枠を追加 */
+            border-radius: 8px; /* 角を丸く */
+            .MuiTab-root {
+                min-width: 80px; /* タブの最小幅 */
+                padding: 10px 20px; /* タブの内側の余白 */
+            }
+            .MuiTabs-indicator {
+                background-color: #3f51b5; /* インジケータの色を設定 */
+            }
+        }
+
         .chart-container {
             max-width: 400px;
             max-height: 400px;
         }
-        }
     }
+}
+
+
+
+
+// .dashboard-container {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 20px;
+    
+//         .left-section {
+//         width: 40%;
+        
+//         .date-picker {
+//             display: flex;
+//             align-items: center;
+//             margin-bottom: 20px;
+    
+//             h6 {
+//             font-size: 1.2rem;
+//             }
+    
+//             .MuiIconButton-root {
+//             margin-left: 10px;
+//             }
+//         }
+    
+//         .category-rating {
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             margin-bottom: 15px;
+//             padding: 10px;
+//             border: 1px solid #ccc;
+//             border-radius: 8px;
+    
+//             h6 {
+//             font-size: 1.2rem;
+//             }
+//         }
+    
+//         .button-group {
+//             margin-top: 20px;
+//             button {
+//             margin-right: 10px;
+//             }
+//         }
+//         }
+    
+//         .right-section {
+//         width: 50%;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         .chart-container {
+//             max-width: 400px;
+//             max-height: 400px;
+//         }
+//         }
+//     }
     
 
 
+
+    
 // .dashboard {
 //     display: flex;
 //     flex-direction: column;

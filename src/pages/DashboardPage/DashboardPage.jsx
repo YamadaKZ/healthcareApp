@@ -8,7 +8,7 @@ import { Radar } from 'react-chartjs-2';
 import 'chart.js/auto';
 import './DashboardPage.scss';
 
-const categories = ['運動', '食事', '睡眠', '学習時間', '瞑想'];
+const categories = ['運動', '食事', '睡眠', '学習時間', '読書'];
 
 const DashboardPage = () => {
     const [selectedDate, setSelectedDate] = useState(null);
