@@ -39,6 +39,10 @@ const CaloriePage = () => {
         setCheckedMeals(storedCheckedMeals);
     }, []);
 
+    const handleClick = (option) => {
+        setSelectedOption(prevOption => (prevOption === option ? "" : option));
+    };
+
     // Update local storage with checked meals and total calorie count
     const handleCheck = (mealId) => {
         setCheckedMeals(prevCheckedMeals => {
