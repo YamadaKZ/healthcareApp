@@ -1,0 +1,55 @@
+// HomeResult.scss
+.results-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.results {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.weight-modification {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 2列に設定
+    grid-auto-rows: minmax(100px, auto); // 各行の高さを自動調整
+    gap: 20px;
+    width: 100%;
+    max-width: 600px; // コンテンツの幅を調整して中央寄せ
+    margin: 0 auto; // コンテンツを中央に配置
+}
+
+.weight-modification-item {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff; // 背景色を設定
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // 視覚的な立体感を追加
+}
+
+
+
+
+// .results-section {
+//     margin-top: 30px;
+//     text-align: center;
+// }
+
+// .results {
+//     font-size: 1.5rem;
+//     margin-bottom: 20px;
+// }
+
+// .weight-modification {
+//     display: grid;
+//     grid-template-columns: repeat(3, 1fr);
+//     grid-gap: 20px;
+// }
+
+// .weight-modification-item {
+//     text-align: center;
+//     padding: 20px;
+//     border: 1px solid #ccc;
+//     border-radius: 8px;
+// }

@@ -1,0 +1,19 @@
+.graph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.select-day {
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+canvas {
+    max-width: 100%;
+}

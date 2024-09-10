@@ -1,0 +1,51 @@
+.blog-page {
+    padding: 20px; /* ページ全体に余白を持たせる */
+}
+
+.post-container {
+    margin-bottom: 20px; /* 各ポスト間に余白を持たせる */
+}
+
+/* フッターの透明な背景とボタンを中央に配置 */
+// .footer {
+//     position: fixed;
+//     bottom: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100px; /* フッターの高さ */
+//     background-color: transparent; /* 背景を透明に設定 */
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// .footer {
+//     position: fixed;
+//     bottom: 10px; /* 画面下から少し浮かせる */
+//     left: 50%;
+//     transform: translateX(-50%);
+//     width: auto;
+//     height: auto;
+//     background-color: transparent;
+//     z-index: 1000; /* 他のコンテンツよりも前に表示する */
+// }
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* フッターの高さ */
+    background-color: transparent; /* 背景を透明に設定 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none; /* フッター部分はクリックを無効にする */
+}
+
+.footer .MuiFab-root {
+    pointer-events: auto; /* ボタン部分だけクリック可能にする */
+}
+
+

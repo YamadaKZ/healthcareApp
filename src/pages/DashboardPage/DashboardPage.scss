@@ -1,0 +1,352 @@
+.dashboard-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+    .left-section {
+        width: 100%;
+
+        .category-rating-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .right-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .graph-section {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .date-picker {
+        margin-bottom: 20px;
+    }
+
+    .button-group {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+// .dashboard-container {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 20px;
+
+//     .left-section {
+//         width: 40%;
+
+//         // ... (既存のスタイル)
+//     }
+
+//     .right-section {
+//         width: 50%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+
+//         .chart-container {
+//             width: 100%;
+//             height: 300px; // レーダーチャートの高さを固定
+//         }
+//     }
+
+//     .graph-section {
+//         width: 100%;
+//         margin-top: 20px;
+
+//         .graph-container {
+//             width: 100%;
+//             height: 300px; // 折れ線グラフの高さを固定
+//         }
+//     }
+// }
+
+// .dashboard-container {
+//     padding: 20px;
+
+//     .left-section {
+//         .date-picker {
+//             display: flex;
+//             align-items: center;
+//             margin-bottom: 20px;
+
+//             h6 {
+//                 font-size: 1.2rem;
+//             }
+
+//             .MuiIconButton-root {
+//                 margin-left: 10px;
+//             }
+//         }
+
+//         .category-rating {
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             margin-bottom: 15px;
+//             padding: 10px;
+//             border: 1px solid #ccc;
+//             border-radius: 8px;
+
+//             h6 {
+//                 font-size: 1.2rem;
+//             }
+//         }
+
+//         .button-group {
+//             margin-top: 20px;
+
+//             button {
+//                 margin-right: 10px;
+//             }
+//         }
+//     }
+
+//     .right-section {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         height: 300px; // レーダーチャートの高さを固定
+
+//         .MuiTabs-root {
+//             margin-bottom: 20px;
+//             border: 1px solid #ccc;
+//             border-radius: 8px;
+//             .MuiTab-root {
+//                 min-width: 80px;
+//                 padding: 10px 20px;
+//             }
+//             .MuiTabs-indicator {
+//                 background-color: #3f51b5;
+//             }
+//         }
+//     }
+
+//     .graph-section {
+//         margin-top: 20px;
+//         height: 300px; // グラフの高さを固定
+
+//         .graph-container {
+//             height: 100%;
+            
+//             .select-day {
+//                 margin-bottom: 10px;
+//             }
+//         }
+//     }
+// }
+
+
+
+// .dashboard-container {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 20px;
+
+//     .left-section {
+//         width: 40%;
+
+//         .date-picker {
+//             display: flex;
+//             align-items: center;
+//             margin-bottom: 20px;
+
+//             h6 {
+//                 font-size: 1.2rem;
+//             }
+
+//             .MuiIconButton-root {
+//                 margin-left: 10px;
+//             }
+//         }
+
+//         .category-rating {
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             margin-bottom: 15px;
+//             padding: 10px;
+//             border: 1px solid #ccc;
+//             border-radius: 8px;
+
+//             h6 {
+//                 font-size: 1.2rem;
+//             }
+//         }
+
+//         .button-group {
+//             margin-top: 20px;
+
+//             button {
+//                 margin-right: 10px;
+//             }
+//         }
+//     }
+
+//     .right-section {
+//         width: 50%;
+//         display: flex;
+//         flex-direction: column; /* 縦方向に配置 */
+//         align-items: center;
+
+//         .MuiTabs-root {
+//             margin-bottom: 20px; /* チャートとの間にスペースを追加 */
+//             border: 1px solid #ccc; /* 外枠を追加 */
+//             border-radius: 8px; /* 角を丸く */
+//             .MuiTab-root {
+//                 min-width: 80px; /* タブの最小幅 */
+//                 padding: 10px 20px; /* タブの内側の余白 */
+//             }
+//             .MuiTabs-indicator {
+//                 background-color: #3f51b5; /* インジケータの色を設定 */
+//             }
+//         }
+
+//         .chart-container {
+//             max-width: 400px;
+//             max-height: 400px;
+//         }
+//     }
+// }
+
+
+
+
+// .dashboard-container {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 20px;
+    
+//         .left-section {
+//         width: 40%;
+        
+//         .date-picker {
+//             display: flex;
+//             align-items: center;
+//             margin-bottom: 20px;
+    
+//             h6 {
+//             font-size: 1.2rem;
+//             }
+    
+//             .MuiIconButton-root {
+//             margin-left: 10px;
+//             }
+//         }
+    
+//         .category-rating {
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             margin-bottom: 15px;
+//             padding: 10px;
+//             border: 1px solid #ccc;
+//             border-radius: 8px;
+    
+//             h6 {
+//             font-size: 1.2rem;
+//             }
+//         }
+    
+//         .button-group {
+//             margin-top: 20px;
+//             button {
+//             margin-right: 10px;
+//             }
+//         }
+//         }
+    
+//         .right-section {
+//         width: 50%;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         .chart-container {
+//             max-width: 400px;
+//             max-height: 400px;
+//         }
+//         }
+//     }
+    
+
+
+
+    
+// .dashboard {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+    
+//         &__controls {
+//         display: flex;
+//         justify-content: space-around;
+//         width: 100%;
+//         margin-bottom: 20px;
+//         }
+    
+//         &__date-picker {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         }
+    
+//         &__ratings {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+    
+//         &__rating {
+//             display: flex;
+//             align-items: center;
+//             margin-bottom: 10px;
+    
+//             h3 {
+//             margin-right: 10px;
+//             }
+    
+//             .star {
+//             cursor: pointer;
+//             font-size: 24px;
+//             color: lightgray;
+//             margin-right: 5px;
+    
+//             &.selected {
+//                 color: gold;
+//             }
+//             }
+//         }
+//         }
+    
+//         &__submit-button {
+//         margin-top: 20px;
+//         padding: 10px 20px;
+//         background-color: #4caf50;
+//         color: white;
+//         border: none;
+//         border-radius: 5px;
+//         cursor: pointer;
+    
+//         &:hover {
+//             background-color: #45a049;
+//         }
+//         }
+    
+//         &__chart {
+//         margin-top: 20px;
+//         width: 500px;
+//         height: 500px;
+//         }
+//     }
